@@ -570,8 +570,8 @@ class media:
                 if regex.search(str(self.year), releases.rename(self.title.replace(str(self.year), '') + ' ' + str(self.year))):
                     title = title.replace('.' + str(self.year), '')
                     if year != "":
-                        return '[^A-Za-z0-9]*(' + title + ':?.)\(?\[?(' + str(year) + ')'
-                    return '[^A-Za-z0-9]*(' + title + ':?.*)\(?\[?(' + str(self.year) + '|' + str(self.year - 1) + '|' + str(self.year + 1) + ')'
+                        return '[^A-Za-z0-9]*(' + title + ':?.*)\(?\[?(' + str(year) + ')?'
+                    return '[^A-Za-z0-9]*(' + title + ':?.*)\(?\[?(' + str(self.year) + '|' + str(self.year - 1) + '|' + str(self.year + 1) + ')?'
                 else:
                     title = title.replace('.' + str(self.year), '')
                     return '[^A-Za-z0-9]*(' + title + ')'
@@ -612,7 +612,7 @@ class media:
             title = title.replace('[', '\[').replace(']', '\]')
             if self.type == 'movie':
                 title = title.replace('.' + str(self.year), '')
-                return '(.*?)(' + title + '.)(.*?)(' + str(self.year) + '|' + str(self.year - 1) + '|' + str(self.year + 1) + ')'
+                return '(.*?)(' + title + '.)(.*?)(' + str(self.year) + '|' + str(self.year - 1) + '|' + str(self.year + 1) + ')?'
             elif self.type == 'show':
                 title = title.replace('.' + str(self.year), '')
                 return '(.*?)(' + title + '.)(.*?)('+self.anime_count+'|(complete)|(seasons?[^0-9]?[0-9]+[^A-Z0-9]+S?[0-9]+)|(S[0-9]+[^A-Z0-9]+S?[0-9]+))'
@@ -1550,7 +1550,7 @@ class media:
     def files(self):
         files = []
         if self.type == 'movie':
-            files = ['(mkv|mp4)']
+            files = ['(mkv|mp4|avi)']
         elif self.type == 'show':
             for season in self.Seasons:
                 for episode in season.Episodes:
