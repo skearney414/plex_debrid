@@ -4,8 +4,8 @@ from ui.ui_print import *
 import releases
 
 name = "torrentio"
-
-default_opts = "http://localhost:7000/sort=qualitysize|qualityfilter=480p,scr,cam/manifest.json"
+base_url = 'https://torrentio.strem.fun'
+default_opts = "https://torrentio.strem.fun/sort=qualitysize|qualityfilter=480p,scr,cam/manifest.json"
 
 session = custom_session()
 
@@ -108,7 +108,7 @@ def scrape(query, altquery):
                 ui_print('[torrentio] error: could not find IMDB ID')
                 return scraped_releases
     if type == "movie":
-        url = 'http://localhost:7000/' + opts + \
+        url = base_url + '/' + opts + \
             ("/" if len(opts) > 0 else "") + 'stream/movie/' + query + '.json'
         response = get(url)
         if not hasattr(response, "streams") or len(response.streams) == 0:
@@ -125,10 +125,9 @@ def scrape(query, altquery):
                     return scraped_releases
     if type == "show":
         ui_print("query is: " + query)
-        url = 'http://localhost:7000/' + opts + \
+        url = base_url + '/' + opts + \
             ("/" if len(opts) > 0 else "") + 'stream/series/' + \
             query + ':' + str(int(s)) + ':' + str(int(e)) + '.json'
-        ui_print("url is: " + url)
         response = get(url)
     if not hasattr(response, "streams"):
         try:
