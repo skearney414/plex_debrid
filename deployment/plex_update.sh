@@ -8,7 +8,7 @@
 # sudo apt install libxml2-utils
 
 plex_url="http://192.168.1.110:32400" # If you're using zurg inside a Docker container, by default it is 172.17.0.1:32400
-token="yjPHyn_Mk3zTFs2zKs_r" # open Plex in a browser, open dev console and copy-paste this: window.localStorage.getItem("myPlexAccessToken")
+token="" # open Plex in a browser, open dev console and copy-paste this: window.localStorage.getItem("myPlexAccessToken")
 zurg_mount="/mnt/remote/realdebrid" # replace with your zurg mount path, ensure this is what Plex sees
 
 # Get the list of section IDs
